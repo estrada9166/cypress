@@ -25,7 +25,7 @@
     "precypress:open:debug": "yarn ensure-deps",
     "cypress:open:debug": "node ./scripts/debug.js cypress:open",
     "precypress:run": "yarn ensure-deps",
-    "cypress:run": "node $(yarn bin cypress) run --dev",
+    "cypress:run": "DEBUG_LOG=true node $(yarn bin cypress) run --dev",
     "precypress:run:debug": "yarn ensure-deps",
     "cypress:run:debug": "node ./scripts/debug.js cypress:run",
     "cypress:verify": "node $(yarn bin cypress) verify --dev",

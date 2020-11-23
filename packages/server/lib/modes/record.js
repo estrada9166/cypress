@@ -630,6 +630,9 @@ const createRunAndRecordSpecs = (options = {}) => {
       let instanceId = null
 
       const beforeSpecRun = (spec) => {
+        if (process.env.DEBUG_LOG) {
+          console.log('----------->2')
+        }
         debug('before spec run %o', { spec })
 
         capture.restore()

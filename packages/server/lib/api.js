@@ -227,6 +227,9 @@ module.exports = {
   },
 
   createInstance (options = {}) {
+    if (process.env.DEBUG_LOG) {
+      console.log('----------->3')
+    }
     const { runId, timeout } = options
 
     const body = _.pick(options, [

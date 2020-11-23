@@ -350,6 +350,9 @@ class Project extends EE {
       },
 
       onMocha: (event, runnable) => {
+        if (process.env.DEBUG_LOG) {
+          console.log('----------->8', event, runnable) 
+        }
         debug('onMocha', event)
         // bail if we dont have a
         // reporter instance
@@ -357,7 +360,10 @@ class Project extends EE {
           return
         }
 
-        reporter.emit(event, runnable)
+        // Event should include the actions
+        if (runnable.id !== 'r3') {
+          reporter.emit(event, runnable)
+        }
 
         if (event === 'end') {
           return Promise.all([

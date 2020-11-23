@@ -258,6 +258,9 @@ class Reporter {
     // manage stats ourselves
     this.stats = { suites: 0, tests: 0, passes: 0, pending: 0, skipped: 0, failures: 0 }
     this.runnables = {}
+    if (process.env.DEBUG_LOG) {
+      console.log('----------->7', rootRunnable) //Here the spec suite is created
+    }
     rootRunnable = this._createRunnable(rootRunnable, 'suite')
     const reporter = Reporter.loadReporter(this.reporterName, this.projectRoot)
 
@@ -317,7 +320,10 @@ class Reporter {
 
   emit (event, ...args) {
     args = this.parseArgs(event, args)
-
+    if (process.env.DEBUG_LOG) {
+      console.log('---------------9', event, args)
+    }
+    // Should we skip the run here?
     if (args) {
       return this.runner && this.runner.emit.apply(this.runner, args)
     }
@@ -351,6 +357,9 @@ class Reporter {
   }
 
   normalizeTest (test = {}) {
+    if (process.env.DEBUG_LOG) {
+      console.log('---------------10')
+    }
     const normalizedTest = {
       testId: orNull(test.id),
       title: getParentTitle(test),
